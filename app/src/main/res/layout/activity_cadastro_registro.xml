@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText android:id="@+id/activity_cadastro_destino"
+        android:layout_width="match_parent"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="60dp"
+        android:hint="Destino"
+        android:inputType="textCapWords"
+        android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/activity_cadastro_registro_botao"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:text="Iniciar Rastreio"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
