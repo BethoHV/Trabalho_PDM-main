@@ -77,7 +77,7 @@ public class CadastroRegistroActivity extends AppCompatActivity {
         String destino = txtDestino.getText().toString();
         rastreamento.setLocal(destino);
 
-        novoRegistro.execute("https://trab-pdm.000webhostapp.com/insert-registro.php", destino);
+        novoRegistro.execute(LINK, destino);
     }
 
     public class NovoRegistro extends AsyncTask<String, Void, String> {

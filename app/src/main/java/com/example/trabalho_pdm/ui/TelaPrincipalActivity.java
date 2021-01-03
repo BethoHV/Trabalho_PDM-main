@@ -73,18 +73,7 @@ public class TelaPrincipalActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-    }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
-        listaDeRegistros.setAdapter(null);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
         dao = new RegistroDao();
 
@@ -101,10 +90,23 @@ public class TelaPrincipalActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(TelaPrincipalActivity.this, ContainerParaMapaActivity.class);
                 intent.putExtra("DESTINO", dao.procurar(i));
-
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
+        listaDeRegistros.setAdapter(null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     public class BuscarDadosListaRegistros extends AsyncTask<String, Void, String> {

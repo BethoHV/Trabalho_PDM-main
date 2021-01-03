@@ -36,6 +36,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity{
     private static final String TITULO_APPBAR = "Login";
+    private final static String LINK = "https://trab-pdm.000webhostapp.com/select.php";
     private EditText txtEmail;
     private EditText txtSenha;
     private Usuario usuario = new Usuario(0, "", "");
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity{
         String email = txtEmail.getText().toString();
         String senha = txtSenha.getText().toString();
 
-        novoLogin.execute("https://trab-pdm.000webhostapp.com/select.php", email, senha);
+        novoLogin.execute(LINK, email, senha);
     }
 
     private void abrirCadastroDeUsuario() {

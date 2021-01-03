@@ -26,6 +26,7 @@ import java.util.Map;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
     public static final String TITULO_APPBAR = "Novo Usuario";
+    public static final String LINK = "https://trab-pdm.000webhostapp.com/insert-usuario.php";
     private EditText txtEmail;
     private EditText txtSenha;
     private EditText txtNome;
@@ -66,7 +67,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         String senha = txtSenha.getText().toString();
         String nome = txtNome.getText().toString();
 
-        novoUsuario.execute("https://trab-pdm.000webhostapp.com/insert-usuario.php", nome, email, senha);
+        novoUsuario.execute(LINK, nome, email, senha);
     }
 
     public class NovoUsuario extends AsyncTask<String, Void, String> {
