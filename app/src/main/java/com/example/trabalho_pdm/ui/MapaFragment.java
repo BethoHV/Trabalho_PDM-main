@@ -1,27 +1,17 @@
 package com.example.trabalho_pdm.ui;
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Context;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.trabalho_pdm.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 

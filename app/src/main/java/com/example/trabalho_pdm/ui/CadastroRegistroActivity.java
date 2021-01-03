@@ -5,17 +5,14 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trabalho_pdm.R;
 import com.example.trabalho_pdm.model.Rastreamento;
-import com.example.trabalho_pdm.model.Usuario;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -29,7 +26,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Date;
 import java.util.Map;
 
 public class CadastroRegistroActivity extends AppCompatActivity {
@@ -38,6 +34,7 @@ public class CadastroRegistroActivity extends AppCompatActivity {
     private EditText txtDestino;
 
     private Rastreamento rastreamento = new Rastreamento(0, "", "");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +45,6 @@ public class CadastroRegistroActivity extends AppCompatActivity {
         txtDestino = findViewById(R.id.activity_cadastro_destino);
 
         gerenciarBotaoRastrear();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
     }
 
     private void gerenciarBotaoRastrear() {

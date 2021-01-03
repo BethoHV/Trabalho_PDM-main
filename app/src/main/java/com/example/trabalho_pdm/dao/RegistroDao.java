@@ -19,4 +19,9 @@ public class RegistroDao {
     public List<Rastreamento> todos() {
         return new ArrayList<>(rastreamentos);
     }
+
+    public List<Rastreamento> deletarLista() {
+        rastreamentos.clear();
+        return rastreamentos;
+    }
 }

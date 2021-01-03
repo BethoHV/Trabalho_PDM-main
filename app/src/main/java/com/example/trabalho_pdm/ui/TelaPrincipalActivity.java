@@ -12,11 +12,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.trabalho_pdm.R;
 import com.example.trabalho_pdm.dao.RegistroDao;
@@ -37,10 +34,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 public class TelaPrincipalActivity extends AppCompatActivity {
@@ -71,42 +64,18 @@ public class TelaPrincipalActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
-        super.onStart();
-
-        final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
-        dao = new RegistroDao();
-
-        BuscarDadosListaRegistros buscarDadosListaRegistros = new BuscarDadosListaRegistros();
-        buscarDadosListaRegistros.execute(LINK, ID_USUARIO);
-
-        listaDeRegistros.setAdapter(new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_activated_1,
-                dao.todos()));
-
-        listaDeRegistros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(TelaPrincipalActivity.this, ContainerParaMapaActivity.class);
-                intent.putExtra("DESTINO", dao.procurar(i));
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    @Override
     protected void onPause(){
         super.onPause();
-        final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
-        listaDeRegistros.setAdapter(null);
+
+        dao.deletarLista();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        BuscarDadosListaRegistros buscarDadosListaRegistros = new BuscarDadosListaRegistros();
+        buscarDadosListaRegistros.execute(LINK, ID_USUARIO);
     }
 
     public class BuscarDadosListaRegistros extends AsyncTask<String, Void, String> {
@@ -164,7 +133,7 @@ public class TelaPrincipalActivity extends AppCompatActivity {
             super.onPostExecute(dto);
             dialog.dismiss();
 
-            if (dto != null) {
+                if (dto != null) {
                 try {
                     //JSONObject obj = new JSONObject(dto);
                     JSONArray ary = new JSONArray(dto);
@@ -179,6 +148,22 @@ public class TelaPrincipalActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                     ex.printStackTrace();
                 }
+
+                final ListView listaDeRegistros = findViewById(R.id.activity_principal_lista_registros);
+                dao = new RegistroDao();
+                listaDeRegistros.setAdapter(new ArrayAdapter<>(
+                        TelaPrincipalActivity.this,
+                        android.R.layout.simple_list_item_activated_1,
+                        dao.todos()));
+
+                listaDeRegistros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(TelaPrincipalActivity.this, ContainerParaMapaActivity.class);
+                        intent.putExtra("DESTINO", dao.procurar(i));
+                        startActivity(intent);
+                    }
+                });
             }else{
                 Toast.makeText(TelaPrincipalActivity.this, "Erro na conexão",
                         Toast.LENGTH_LONG).show();
